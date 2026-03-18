@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Co Pilot
 
-## Getting Started
+A personal system built to bring structure, clarity, and efficiency to the job application process.
 
-First, run the development server:
+## 🧠 Inspiration
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+While applying to jobs, I used a popular job copilot tool to automate parts of the process. It worked well until key features required payment.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Since the tools used to build these systems are publicly available, I decided to build my own version tailored to my workflow.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I am a cybersecurity student focused on understanding systems and solving real-world problems.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Features
 
-## Learn More
+- Job tracking dashboard
+- Resume builder tailored to job descriptions
+- Application workflow (step-by-step apply process)
+- Interview preparation flow
+- Job mapping system
+- Scoring system to prioritize applications
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js
+- Supabase
+- Tailwind CSS
+- OpenAI API
+- Google Maps API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📸 Screenshots
 
-## Deploy on Vercel
+### Dashboard
+![Dashboard](./screenshots/dashboard.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Apply Flow
+![Apply Flow](./screenshots/apply-flow.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Job Tracker
+![Job Tracker](./screenshots/job-tracker.png)
+
+### Job Map
+![Job Map](./screenshots/job-map.png)
+
+### Profile / Resume View
+![Profile](./screenshots/Home.png)
+
+### Backend (Supabase)
+![Supabase](./screenshots/Supabase.png)
+
+## ⚠️ Note
+
+This project is still in progress. Some features require API usage and are not fully public.
+
+## 👤 Author
+
+Pelumi Johnson
