@@ -29,6 +29,9 @@ I am a cybersecurity student focused on understanding systems and solving real-w
 
 ## 📸 Screenshots
 
+### Profile / Resume View
+![Profile](./screenshots/Home.png)
+
 ### Dashboard
 ![Dashboard](./screenshots/dashboard.png)
 
@@ -40,9 +43,6 @@ I am a cybersecurity student focused on understanding systems and solving real-w
 
 ### Job Map
 ![Job Map](./screenshots/job-map.png)
-
-### Profile / Resume View
-![Profile](./screenshots/Home.png)
 
 ### Backend (Supabase)
 ![Supabase](./screenshots/Supabase.png)
