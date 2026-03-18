@@ -258,7 +258,7 @@ const h1: React.CSSProperties = {
 const sub: React.CSSProperties = {
   marginTop: 10,
   marginBottom: 0,
-  opacity: 0.7,
+  color: "#4b5563",
   lineHeight: 1.6,
 };
 
@@ -306,7 +306,7 @@ const cardTitle: React.CSSProperties = {
 const cardDesc: React.CSSProperties = {
   marginTop: 6,
   fontSize: 13,
-  opacity: 0.72,
+  color: "#4b5563",
   lineHeight: 1.45,
 };
 
@@ -334,7 +334,7 @@ const miniTitle: React.CSSProperties = {
 
 const miniText: React.CSSProperties = {
   marginTop: 8,
-  opacity: 0.78,
+  color: "#4b5563",
   fontSize: 13,
   lineHeight: 1.5,
 };
@@ -359,13 +359,13 @@ const rowLeft: React.CSSProperties = {
 const rowTag: React.CSSProperties = {
   fontSize: 12,
   fontWeight: 900,
-  opacity: 0.6,
+  color: "#6b7280",
 };
 
 const rowRight: React.CSSProperties = {
   fontSize: 12,
   fontWeight: 950,
-  opacity: 0.7,
+  color: "#374151",
 };
 
 const ctaWrap: React.CSSProperties = {
@@ -402,7 +402,7 @@ const btnGhost: React.CSSProperties = {
 
 const helper: React.CSSProperties = {
   fontSize: 13,
-  opacity: 0.65,
+  color: "#4b5563",
   textAlign: "center",
 };
 

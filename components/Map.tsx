@@ -83,19 +83,51 @@ export default function Map({
   function popupHtml(job: JobMarker) {
     const company = job.company ?? "Unknown Company";
     const title = job.title ?? "Untitled Role";
-    const loc = job.location_text ? `📍 ${job.location_text}` : "";
-    const score = typeof job.score === "number" ? `⭐ ${job.score}/100` : "";
+    const loc = job.location_text ?? "";
+    const score = typeof job.score === "number" ? `${job.score}/100` : "";
 
     return `
-      <div style="font-weight:750; line-height:1.25; min-width:240px">
-        <div style="font-size:14px">${company}</div>
-        <div style="font-size:13px; opacity:.80; margin-top:6px">${title}</div>
+      <div
+        style="
+          min-width:260px;
+          max-width:320px;
+          background:#ffffff;
+          color:#111827;
+          border:1px solid #e5e7eb;
+          border-radius:18px;
+          box-shadow:0 16px 32px rgba(0,0,0,0.14);
+          padding:16px 16px 14px;
+          font-family:Arial, Helvetica, sans-serif;
+          line-height:1.35;
+        "
+      >
+        <div style="font-size:16px; font-weight:900; color:#111827;">
+          ${company}
+        </div>
+
+        <div style="font-size:14px; font-weight:700; color:#374151; margin-top:6px;">
+          ${title}
+        </div>
+
         ${
           loc || score
-            ? `<div style="font-size:12px; opacity:.78; margin-top:8px; display:flex; gap:10px; flex-wrap:wrap">
-                 ${loc ? `<span>${loc}</span>` : ""}
-                 ${score ? `<span>${score}</span>` : ""}
-               </div>`
+            ? `
+              <div
+                style="
+                  font-size:13px;
+                  font-weight:700;
+                  color:#6b7280;
+                  margin-top:10px;
+                  display:flex;
+                  gap:12px;
+                  flex-wrap:wrap;
+                  align-items:center;
+                "
+              >
+                ${loc ? `<span>📍 ${loc}</span>` : ""}
+                ${score ? `<span>⭐ ${score}</span>` : ""}
+              </div>
+            `
             : ""
         }
       </div>
@@ -121,7 +153,10 @@ export default function Map({
     if (!marker) return;
 
     if (!infoRef.current) {
-      infoRef.current = new window.google.maps.InfoWindow({ disableAutoPan: true });
+      infoRef.current = new window.google.maps.InfoWindow({
+        disableAutoPan: true,
+        pixelOffset: new window.google.maps.Size(0, -6),
+      });
     }
 
     infoRef.current.close();
@@ -142,8 +177,6 @@ export default function Map({
         if (!mapRef.current) return;
 
         const g = window.google;
-
-        // Only use mapId if it's a REAL Map ID (otherwise leave blank)
         const MAP_ID = (process.env.NEXT_PUBLIC_GOOGLE_MAP_ID || "").trim();
 
         if (!mapInstanceRef.current) {
@@ -151,22 +184,22 @@ export default function Map({
             center: { lat: 40.7128, lng: -74.006 },
             zoom: 10,
             ...(MAP_ID ? { mapId: MAP_ID } : {}),
-
             disableDefaultUI: false,
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-
             zoomControl: true,
             zoomControlOptions: { position: g.maps.ControlPosition.RIGHT_CENTER },
-
             clickableIcons: false,
             gestureHandling: "greedy",
           };
 
           mapInstanceRef.current = new g.maps.Map(mapRef.current, options);
 
-          infoRef.current = new g.maps.InfoWindow({ disableAutoPan: true });
+          infoRef.current = new g.maps.InfoWindow({
+            disableAutoPan: true,
+            pixelOffset: new g.maps.Size(0, -6),
+          });
 
           applyPrototypePadding(mapInstanceRef.current);
 
@@ -179,11 +212,9 @@ export default function Map({
 
         const map = mapInstanceRef.current;
 
-        // index jobs
         jobsByIdRef.current = {};
         jobs.forEach((j) => (jobsByIdRef.current[j.id] = j));
 
-        // clear markers
         markersRef.current.forEach((m) => m.setMap(null));
         markersRef.current = [];
         markersByIdRef.current = {};
@@ -212,7 +243,10 @@ export default function Map({
             const latest = jobsByIdRef.current[job.id] ?? job;
 
             if (!infoRef.current) {
-              infoRef.current = new g.maps.InfoWindow({ disableAutoPan: true });
+              infoRef.current = new g.maps.InfoWindow({
+                disableAutoPan: true,
+                pixelOffset: new g.maps.Size(0, -6),
+              });
             }
 
             infoRef.current.close();
@@ -244,7 +278,6 @@ export default function Map({
     return () => {
       cancelled = true;
 
-      // cleanup markers on unmount
       markersRef.current.forEach((m) => m.setMap(null));
       markersRef.current = [];
       markersByIdRef.current = {};
@@ -294,22 +327,36 @@ export default function Map({
             justifyContent: "center",
             padding: 18,
             textAlign: "center",
-            background: "rgba(255,255,255,0.88)",
+            background: "rgba(255,255,255,0.92)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             border: "1px solid rgba(0,0,0,0.06)",
           }}
         >
           <div style={{ maxWidth: 520 }}>
-            <div style={{ fontWeight: 950, fontSize: 16 }}>Map Error</div>
+            <div style={{ fontWeight: 950, fontSize: 16, color: "#111827" }}>Map Error</div>
 
-            <div style={{ marginTop: 8, opacity: 0.8, fontWeight: 700, lineHeight: 1.5 }}>
+            <div
+              style={{
+                marginTop: 8,
+                color: "#374151",
+                fontWeight: 700,
+                lineHeight: 1.5,
+              }}
+            >
               {mapError}
             </div>
 
-            <div style={{ marginTop: 10, opacity: 0.7, fontSize: 13, lineHeight: 1.5 }}>
-              Most common causes: invalid/missing API key, billing not enabled, Maps JavaScript API not enabled,
-              HTTP referrer restrictions not allowing your domain (localhost), or an invalid Map ID.
+            <div
+              style={{
+                marginTop: 10,
+                color: "#6b7280",
+                fontSize: 13,
+                lineHeight: 1.5,
+              }}
+            >
+              Most common causes: invalid or missing API key, billing not enabled, Maps JavaScript API not enabled,
+              HTTP referrer restrictions not allowing your domain localhost, or an invalid Map ID.
             </div>
           </div>
         </div>
