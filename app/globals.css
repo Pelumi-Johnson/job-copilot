@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
+
+/* ---------- Theme variables ---------- */
 :root {
-  --background: #ffffff;
+  --background: #f6f7f9; /* base neutral */
   --foreground: #171717;
 }
 
@@ -12,6 +14,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode stays intact */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +22,68 @@
   }
 }
 
+/* ---------- Global layout ---------- */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
 }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+
+  /* Frosted neutral gradient (light mode) */
+  background: linear-gradient(
+    to bottom,
+    #f2f4f7 0%,
+    #f6f7f9 45%,
+    #fbfbfc 100%
+  );
+}
+
+/* Soft frosted canvas (background only, never touches content) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      1200px 700px at 15% 8%,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    radial-gradient(
+      1000px 600px at 85% 15%,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    radial-gradient(
+      1200px 900px at 50% 120%,
+      rgba(0, 0, 0, 0.035),
+      rgba(0, 0, 0, 0) 55%
+    );
+
+  filter: blur(6px);
+  opacity: 0.9;
+}
+
+/* Ultra-subtle noise for premium texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+
