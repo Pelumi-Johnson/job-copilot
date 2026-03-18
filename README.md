@@ -36,7 +36,7 @@ I am a cybersecurity student focused on understanding systems and solving real-w
 ![Apply Flow](./screenshots/apply-flow.png)
 
 ### Job Tracker
-![Job Tracker](./screenshots/job-tracker.png)
+![Job Tracker](./screenshots/Job-tracker.png)
 
 ### Job Map
 ![Job Map](./screenshots/job-map.png)
